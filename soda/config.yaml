@@ -1,0 +1,69 @@
+#variables:
+#  name: Customers UK
+#  table: city
+checks for city:
+  - group by:
+      group_limit: 50
+      name: max zip_code by state
+      query: >-
+        select state_code, max(zip_code) as max_zip_code from city group by
+        state_code
+      fields:
+        - state_code
+      checks:
+        - max_zip_code:
+            fail: when < 100000
+            name: max zip_code by state
+#  - change for row_count between -20 and +50
+#  - change percent for row_count < 50%
+#  - change same day last week for row_count > 10
+#  - anomaly detection for row_count
+#  - row_count < 0:
+#      name: 'Row count in ${name}'
+#      filter: city_name = 'Verbena'
+#      attributes:
+#        key1: value1
+#  - row_count same as customer
+#  - failed rows:
+#      samples limit: 2
+#      fail condition: state_code = 'AL'
+#  - failed rows:
+#      fail query: |
+#        SELECT DISTINCT state_code
+#        FROM city as city
+#filter customer [daily]:
+#  where: age >= 10
+#checks for customer [daily]:
+#  - row_count = 53
+#  - freshness(ts_customer) < 3d
+#  - duplicate_count(age) > 1000:
+#        name: sample001
+#        samples limit: 1
+#  - values in (city_id) must exist in city (city_id)
+#  - schema:
+#      warn:
+#        when forbidden column present:
+#          - mailing_street
+#        when wrong column type:
+#          lifestyle: varchar
+#      fail:
+#        when forbidden column present:
+#          - mail_a*
+#        when wrong column type:
+#          age: bigint
+#  - avg_age between 30 and 50:
+#      avg_age expression: AVG(age)
+#for each dataset T:
+#  datasets:
+#    - pr%
+#    - pos%
+#    - exclude pos_tx%
+#  checks:
+#    - row_count > 0
+#discover datasets:
+#  datasets:
+#    - include %
+#profile columns:
+#  columns:
+#    - customer.%
+#    - city.%
