@@ -2,7 +2,7 @@
 #  name: Customers UK
 #  table: city
 checks for city:
-  - row_count < 0
+  - row_count > 0
 #  - group by:
 #      group_limit: 50
 #      name: max zip_code by state
