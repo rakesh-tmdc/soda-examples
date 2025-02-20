@@ -2,18 +2,19 @@
 #  name: Customers UK
 #  table: city
 checks for city:
-  - group by:
-      group_limit: 50
-      name: max zip_code by state
-      query: >-
-        select state_code, max(zip_code) as max_zip_code from city group by
-        state_code
-      fields:
-        - state_code
-      checks:
-        - max_zip_code:
-            fail: when < 100000
-            name: max zip_code by state
+  - row_count < 0
+#  - group by:
+#      group_limit: 50
+#      name: max zip_code by state
+#      query: >-
+#        select state_code, max(zip_code) as max_zip_code from city group by
+#        state_code
+#      fields:
+#        - state_code
+#      checks:
+#        - max_zip_code:
+#            fail: when < 100000
+#            name: max zip_code by state
 #  - change for row_count between -20 and +50
 #  - change percent for row_count < 50%
 #  - change same day last week for row_count > 10
