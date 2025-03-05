@@ -8,10 +8,10 @@ data_source icebase:
 #    schema: public
 
     type: depot
-    address: 'dataos://icebase'
-    schema: retail
+    address: 'dataos://s3lhdev'
+    schema: sample
     options:
-        clusterName: system
+        clusterName: s3lhdevthemis
     sampler:
         exclude_columns:
             retail_*: [password]
