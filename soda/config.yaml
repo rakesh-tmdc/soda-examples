@@ -1,7 +1,7 @@
 #variables:
 #  name: Customers UK
 #  table: city
-checks for city:
+checks for cloudevents014:
   - row_count > 0
 #  - group by:
 #      group_limit: 50
